@@ -114,7 +114,7 @@ function enviarDatosNuevoLibro(e){
     const titulo = document.getElementById('titulo').value.trim();
     const autor = document.getElementById('autor').value.trim();
     const genero = document.getElementById('genero').value.trim();
-    const publicacion = parseInt(document.getElementById('fecha_publicacion').value);
+    const fecha_publicacion = parseInt(document.getElementById('fecha_publicacion').value);
     const imagen = document.getElementById('imagen').files[0];
     const disponible = document.getElementById('disponible').checked;
     const favorito = document.getElementById('favorito').checked;
@@ -138,7 +138,7 @@ function enviarDatosNuevoLibro(e){
     }
 
     const anioActual = new Date().getFullYear();
-    if(isNaN(publicacion) || publicacion < 1000 || publicacion > anioActual +1){
+    if(isNaN(fecha_publicacion) || fecha_publicacion < 1000 || fecha_publicacion > anioActual +1){
         document.getElementById('error-publicacion').textContent = "La fecha de publicación debe ser un año válido (4 dígitos)";
         errores = true;
     }
@@ -158,6 +158,14 @@ function enviarDatosNuevoLibro(e){
     }
 
     if(errores) return //si hay errores no se envia el formulario
+
+    //si estamos aqui los datos del formulario son válidos
+    const datos = {
+        titulo,
+        autor,
+        genero,
+        fecha_publicacion
+    }
 
 }
 
