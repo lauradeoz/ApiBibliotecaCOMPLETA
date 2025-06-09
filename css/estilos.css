@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    min-height: 100vh;
+    color: #4c1d95;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #581c87;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    font-weight: bold;
+}
+
+.libros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.libroCard {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+
+.libroCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.libro-imagen-container {
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #f3e8ff, #e9d5ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.libroCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.libroCard:hover img {
+    transform: scale(1.05);
+}
+
+.libro-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.libro-titulo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #581c87;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.libro-resumen {
+    color: #6b46c1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    flex-grow: 1;
+    text-align: left;
+    max-height: none;
+    overflow: visible;
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: #8b5cf6;
+    font-size: 1.1rem;
+}
+
+.error {
+    text-align: center;
+    padding: 3rem;
+    color: #dc2626;
+    background: rgba(248, 113, 113, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.no-libros {
+    text-align: center;
+    padding: 3rem;
+    color: #8b5cf6;
+    font-size: 1.1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+/* Animación de entrada */
+.libroCard {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.libroCard:nth-child(1) { animation-delay: 0.1s; }
+.libroCard:nth-child(2) { animation-delay: 0.2s; }
+.libroCard:nth-child(3) { animation-delay: 0.3s; }
+.libroCard:nth-child(4) { animation-delay: 0.4s; }
+.libroCard:nth-child(5) { animation-delay: 0.5s; }
+.libroCard:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .libros {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .libroCard {
+        padding: 1.25rem;
+    }
+
+    .libro-imagen-container {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .libros {
+        grid-template-columns: 1fr;
+    }
+
+    .libro-imagen-container {
+        height: 200px;
+    }
+}

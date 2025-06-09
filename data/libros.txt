@@ -1,0 +1,33 @@
+titulo: El mundo de Sofía
+autor: Jostein Gaarder
+genero: Filosofía
+fecha_publicacion: 1991
+imagen: el_mundo_de_sofia.jpg
+resumen: 
+
+Es una novela filosófica del escritor noruego Jostein Gaarder que combina magistralmente ficción y educación filosófica. La historia sigue a Sofía Amundsen, una adolescente de 14 años que comienza a recibir misteriosas cartas con preguntas como ¿Quién eres? y ¿De dónde viene el mundo?.
+
+SQL para insertar un nuevo libro en la tabla libros
+
+INSERT INTO libros (`titulo`,`autor`,`genero`,`fecha_publicacion`,`imagen`,`resumen`) VALUES ("El mundo de Sofía", "Jostein Gaarder", "Filosofía", 1991, "el_mundo_de_sofia.jpg", "Es una novela filosófica del escritor noruego Jostein Gaarder que combina magistralmente ficción y educación filosófica. La historia sigue a Sofía Amundsen, una adolescente de 14 años que comienza a recibir misteriosas cartas con preguntas como ¿Quién eres? y ¿De dónde viene el mundo?.");
+
+INSERT INTO nombreTabla (campo1, campo2, campo3) VALUES (valor1, valor2, valor3);
+
+Para eliminar un libro por su id 
+DELETE FROM nombreTabla WHERE condicion
+
+Eliminar todos los libros que no esten disponibles
+DELETE FROM libros WHERE disponible = 0
+
+Elimina el libro con id = 8
+DELETE FROM libros WHERE id = 8;
+
+endpoint de la API para la tabla libros:
+GET ApiBiblioteca/api/libros - devuelve todos los libros
+GET ApiBiblioteca/api/libros/3 - devuelve el libro con id = 3
+POST ApiBiblioteca/api/libros - crea un nuevo libro (datos en el body de la peticion)
+PUT ApiBiblioteca/api/libros/3 - aztualiza los datos del libro con la id = 3
+DELETE ApiBiblioteca/api/libros/3 - elimina el libro con la id = 3
+
+endpoint para la tabla usuarios
+GET ApiBiblioteca/api/usuarios
