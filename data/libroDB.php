@@ -3,7 +3,6 @@
 
 class LibroDB {
 
-
     private $db;
     private $table = 'libros';
     //recibe una conexion ($database) a una base de datos
@@ -41,6 +40,7 @@ class LibroDB {
         return[];
         }
     }
+
     public function getByID($id){
                 $sql = "SELECT * FROM {$this->table} WHERE id = ?";
                 $smtp = $this->db->prepare($sql);
@@ -63,6 +63,8 @@ class LibroDB {
                 $smtp->close();
 
 
+
+
                  }
                  //algo fallo
                  return null;
@@ -80,9 +82,10 @@ class LibroDB {
             $genero = isset($data['genero']) ? $data['genero'] : null;
             $fecha_publicacion = isset($data['fecha_publicacion']) ? $data['fecha_publicacion'] : null;
             $disponible = isset($data['disponible']) ? (int)(bool)$data['disponible'] : 1;
-            $imagen = isset($data['imagen']) ? (int)(bool)$data['imagen'] : null;
+            $imagen = isset($data['imagen']) ? $data['imagen'] : null;
             $favorito = isset($data['favorito']) ? (int)(bool)$data['favorito'] : 0;
-            $resumen = isset($data['resumen']) ? (int)(bool)$data['resumen'] : "";
+            $resumen = isset($data['resumen']) ? $data['resumen'] : "";
+
 
             $stmt->bind_param(
                 //tipo de datos que tienen que tener cada parametro
@@ -106,10 +109,11 @@ class LibroDB {
                 return $this->getByID($id);
 
 
+
+
             }
         }
         return false;
-
 
     }
 
@@ -148,10 +152,7 @@ class LibroDB {
         $libro = $this->getByID($id);
         if(!$libro){
             return false;
-
-
         }
-
 
         $stmt = $this->db->prepare($sql);
         if($stmt){
@@ -183,9 +184,6 @@ class LibroDB {
             );
             }
 
-
-
-
             if($stmt->execute()){
                 $stmt->close();
                 //devuelve todos los datos del libro que acabamos de crear
@@ -196,6 +194,4 @@ class LibroDB {
         return false;
     }
 
-
 }
-

@@ -56,7 +56,12 @@ h1{
 }
 
 .tableLibros img{
-    width: 20px;
+    width: 60%;
+}
+
+.imagenEditar{
+    width: 150px;
+
 }
 
 .panelCrear{
@@ -64,7 +69,7 @@ h1{
     padding: 0.5rem;
 
 }
- button {
+ button{
             background-color: #891199;
             color: white;
             border: none;
@@ -83,7 +88,7 @@ h1{
 
 
 
-form {
+form{
             background: white;
             padding: 40px;
             border-radius: 12px;
@@ -95,7 +100,7 @@ form {
             margin: auto;
         }
 
-        h2 {
+        h2{
             text-align: center;
             font-weight: bold;
             color: #2c3e50;
@@ -104,20 +109,20 @@ form {
             font-weight: 300;
         }
 
-        .form-group {
+        .form-group{
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
-        .checkbox-group {
+        .checkbox-group{
             display: flex;
             align-items: center;
             gap: 12px;
             margin: 10px 0;
         }
 
-        label {
+        label{
             font-weight: 600;
             color: #34495e;
             font-size: 14px;
