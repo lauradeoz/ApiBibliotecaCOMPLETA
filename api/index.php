@@ -36,11 +36,13 @@ $segments = explode('/', trim($requestUri, '/'));
 
 //compruebo si la dirección es correcta
 //si la direccion no es correcta responde not found y termina la ejecucion
-if($segments[1] !== 'api' || $segments[2] !== 'libros'){
-    header('HTTP/1.1 404 Not Found');
-    echo json_encode(['success' => false, 'error' => 'Endpoint no encontrado']);
-    exit();
-}
+
+
+// if($segments[1] !== 'api' || $segments[2] !== 'libros'){
+//     header('HTTP/1.1 404 Not Found');
+//     echo json_encode(['success' => false, 'error' => 'Endpoint no encontrado']);
+//     exit();
+// }
 
 //variable para guardar el id del libro solicitado
 $libroId = null;

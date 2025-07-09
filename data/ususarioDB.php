@@ -3,12 +3,14 @@
  * Se encarga de interactuar con la base de datos con la tabla usuarios
  */
 
+ require_once '../config/config.php';
+ require_once 'enviarCorreos.php';
 
 class UsuarioDB {
 
     private $db;
     private $table = 'usuarios';
-    private $url = 'http://localhost/ApiBiblioteca/admin';
+    private $url = URL_ADMIN;
     
     //recibe una conexión ($database) a una base de datos y la mete en $db
     public function __construct($database){
@@ -94,8 +96,8 @@ class UsuarioDB {
             if($stmt->execute()){
                 // correcto
                 $mensaje = "Por favor, verifica tu cuenta haciendo clic en este enlace: $this->url/verificar.php?token=$token";
-                //$mensaje = Correo::enviarCorreo($email, "Cliente", "Verificación de cuenta", $mensaje);
-                $mensaje = $this->enviarCorreoSimulado($email, "Verificación de cuenta", $mensaje);
+                $mensaje = Correo::enviarCorreo($email, "Cliente", "Verificación de cuenta", $mensaje);
+                // $mensaje = $this->enviarCorreoSimulado($email, "Verificación de cuenta", $mensaje);
             }else{
                 $mensaje = ["success" => false, "mensaje" => "Error en el registro: " . $stmt->error];
             }
@@ -241,8 +243,8 @@ class UsuarioDB {
             //ejecuta la consulta
             if($stmt->execute()){
                 $mensaje = "Para restablecer tu contraseña, haz click en este enlace: $this->url/restablecer.php?token=$token";
-                //$mensaje = Correo::enviarCorreo($email, "Cliente", "Restablecer Contraseña", $mensaje);
-                $this->enviarCorreoSimulado($email, "Recuperación de contraseña", $mensaje);
+                $mensaje = Correo::enviarCorreo($email, "Cliente", "Restablecer Contraseña", $mensaje);
+                //$this->enviarCorreoSimulado($email, "Recuperación de contraseña", $mensaje);
                 $resultado = ["success" => true, "mensaje" => "Se ha enviado un enlace de recuperación a tu correo"];
             }else{
                 $resultado = ["success" => false, "mensaje" => "Error al procesar la solicitud"];

@@ -1,24 +1,44 @@
 // Crear evento para que se ejecute el código cuando haya terminado de cargarse el DOM
 document.addEventListener('DOMContentLoaded', () => {
-    const url = 'http://localhost/ApiBiblioteca/api/libros';
+    
+    const url = 'api/index.php/libros';
 
     // Realizo la llamada a la API para conseguir los datos
+    // fetch(url)
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Error en la respuesta del servidor');
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         console.log(data);
+    //         mostrarLibros(data);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error:', error);
+    //         document.getElementById('divLibros').innerHTML = 
+    //             '<div class="error">Error al cargar los libros. Por favor, inténtalo de nuevo.</div>';
+    //     });
+
     fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            mostrarLibros(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('divLibros').innerHTML = 
-                '<div class="error">Error al cargar los libros. Por favor, inténtalo de nuevo.</div>';
-        });
+    .then(response => response.text())
+    .then(text => {
+        // Limpiar la respuesta
+        let jsonString = text.trim();
+        
+        // Si empieza con "Array{", remover "Array"
+        if (jsonString.startsWith('Array{')) {
+            jsonString = jsonString.substring(5);
+        }
+        
+        // Parsear el JSON
+        const data = JSON.parse(jsonString);
+        mostrarLibros(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 });
 
 function mostrarLibros(datos) {

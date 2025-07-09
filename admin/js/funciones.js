@@ -1,5 +1,5 @@
 // URL base para hacer las peticiones a la API de libros
-const url = 'http://localhost/ApiBiblioteca/api/libros';
+const url = 'http://www.alumnalaura.com/api/index.php/libros';
 
 let librosData = [] //almacena los datos de todos los libros
 let modoEdicion = false //para saber si estamos creando o editando
@@ -9,10 +9,29 @@ let libroEditandoId = null //ID del libro que se está editando
 document.addEventListener('DOMContentLoaded', () => {
 
     // Realiza una solicitud GET a la API para obtener todos los libros
+    // fetch(url)
+    //     .then(response => response.json())
+    //     .then(data => mostrarLibros(data)) // Muestra los libros en la tabla
+    //     .catch(error => console.error('Error:', error)); // Muestra error si ocurre
+
     fetch(url)
-        .then(response => response.json())
-        .then(data => mostrarLibros(data)) // Muestra los libros en la tabla
-        .catch(error => console.error('Error:', error)); // Muestra error si ocurre
+    .then(response => response.text())
+    .then(text => {
+        // Limpiar la respuesta
+        let jsonString = text.trim();
+        
+        // Si empieza con "Array{", remover "Array"
+        if (jsonString.startsWith('Array{')) {
+            jsonString = jsonString.substring(5);
+        }
+        
+        // Parsear el JSON
+        const data = JSON.parse(jsonString);
+        mostrarLibros(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
     // Evento para mostrar u ocultar el formulario al hacer clic en "Crear nuevo libro"
     document.getElementById("crear").addEventListener('click', () => {
